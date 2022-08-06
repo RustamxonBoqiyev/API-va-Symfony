@@ -4,11 +4,24 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-class UserCreateAction
+use App\Component\User\UserFoctory;
+use App\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class UserCreateAction extends AbstractController
 {
-    public function __invoke():void
+    private UserFoctory $userFoctory;
+
+    public function __construct(UserFoctory $userFoctory)
     {
-        print 'Hello,World!';
+
+    }
+
+    public function __invoke(User $data): void
+    {
+        $user =$this->userFactory->create($data->getEmail(), $data->getPassword());
+
+        print_r($user);
         exit;
     }
 }
