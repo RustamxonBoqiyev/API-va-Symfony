@@ -13,21 +13,21 @@ class Book
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column()]
-    private ?int $id = null;
+    #[ORM\Column(type: 'string')]
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $description = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $description;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $text = null;
+    #[ORM\Column(type: 'text')]
+    private $text;
 
-    #[ORM\ManyToOne(inversedBy: 'books')]
+    #[ORM\ManyToOne(targetEntity: Category::class ,inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
+    private $category;
 
     public function getId(): ?int
     {

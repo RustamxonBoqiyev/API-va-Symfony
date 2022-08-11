@@ -14,14 +14,14 @@ class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column()]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
-    private Collection $books;
+    private $books;
 
     public function __construct()
     {
