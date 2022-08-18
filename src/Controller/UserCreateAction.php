@@ -16,11 +16,13 @@ class UserCreateAction extends AbstractController
     {
     }
 
-    public function __invoke(User $data): void
+    public function __invoke(User $data): User
     {
-        $user =$this->userFactory->create($data->getEmail(), $data->getPassword());
-        $this->userManager->save($user,  true);
-        print_r($user);
-        exit;
+        $user = $this->userFactory->create($data->getEmail(), $data->getPassword());
+        $this->userManager->save($user, true);
+
+
+        return $user;
+
     }
 }
